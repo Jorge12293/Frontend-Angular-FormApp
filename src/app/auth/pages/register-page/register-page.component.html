@@ -1,0 +1,128 @@
+<h2>Validation Reactive</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+
+        <form [formGroup]="myForm"
+              (ngSubmit)="onSubmit()"
+              autocomplete="off">
+
+            <!-- Name -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Name</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="name"
+                           placeholder="Name of user">
+
+                    <span *ngIf="isValidField('name')"
+                        class="form-text text-danger">
+                        Must format and FirstName and LastName
+                    </span>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email"
+                           class="form-control"
+                           formControlName="email"
+                           placeholder="Email of user">
+                    <span *ngIf="isValidField('email')"
+                      class="form-text text-danger">
+                        Error email
+                    </span>
+                </div>
+            </div>
+
+            <!-- Username -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="username"
+                           placeholder="Name code of user">
+                    <span *ngIf="isValidField('username')"
+                      class="form-text text-danger">
+                        User name can't be strider
+                    </span>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Password</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                           class="form-control"
+                           formControlName="password"
+                           placeholder="Password of its account">
+
+                    <span *ngIf="isValidField('password')"
+                      class="form-text text-danger">
+                        The password must be greater than 6 characters
+                    </span>
+                </div>
+            </div>
+
+            <!-- Password2 -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Confirm</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                           class="form-control"
+                           formControlName="password2"
+                           placeholder="Confirm password">
+
+                    <span *ngIf="isValidField('password2')"
+                      class="form-text text-danger">
+                         Passwords must be equals
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary float-end"
+                            type="submit">
+                        Create
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+<h2>Form Valid:  {{myForm.valid}}</h2>
+<h2>Form Status:  {{myForm.status}}</h2>
+<h2>Form Pending:  {{myForm.pending}}</h2>
+<h2>Form errors </h2>
+<pre>{{ myForm.value | json }}</pre>
+
+<h5>Name</h5>
+<pre>{{ myForm.controls['name'].errors | json }}</pre>
+
+<h5>Email</h5>
+<pre>{{ myForm.controls['email'].errors | json }}</pre>
+
+<h5>Username</h5>
+<pre>{{ myForm.controls['username'].errors | json }}</pre>
+
+
+<h5>Password</h5>
+<pre>{{ myForm.value.password | json }}</pre>
+
+<h5>Password2</h5>
+<pre>{{ myForm.value.password2 | json }}</pre>
+
+<h5>Confirm</h5>
+

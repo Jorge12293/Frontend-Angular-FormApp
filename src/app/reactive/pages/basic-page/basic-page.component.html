@@ -1,0 +1,122 @@
+<h2>Reactive: Basic</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+
+        <form
+          [formGroup]="myForm"
+          (ngSubmit)="onSave()" autocomplete="off">
+
+            <!-- Field of Product -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Product</label>
+                <div class="col-sm-9">
+
+                    <input type="text"
+                           class="form-control"
+                           formControlName="name"
+                           placeholder="Name of product">
+                        <!-- Option 1 -->
+                        <span *ngIf="isValidField('name')"
+                           class="form-text text-danger">
+                           {{getFieldErrors('name')}}
+                         </span>
+                      <!-- Option 2 -->
+                      <!--
+                        <span *ngIf="myForm.controls['name'].getError('required') &&
+                          myForm.controls['name'].touched"
+                          class="form-text text-danger">
+                          This field is required
+                        </span>
+                        <span *ngIf="myForm.controls['name'].getError('minlength') &&
+                          myForm.controls['name'].touched"
+                          class="form-text text-danger">
+                          This field is required minium 3 letters
+                        </span>
+                      -->
+
+                </div>
+            </div>
+
+            <!-- Filed of Product -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Price</label>
+                <div class="col-sm-9">
+                    <input type="number"
+                           class="form-control"
+                           formControlName="price"
+                           placeholder="Price of product">
+                      <span *ngIf="isValidField('price')"
+                        class="form-text text-danger">
+                        {{getFieldErrors('price')}}
+                      </span>
+                </div>
+            </div>
+
+
+
+            <!-- Field is exist -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Exist</label>
+                <div class="col-sm-9">
+                    <input type="number"
+                           class="form-control"
+                           formControlName="inStorage"
+                           placeholder="Exist of product">
+
+                      <span *ngIf="isValidField('inStorage')"
+                        class="form-text text-danger">
+                        {{getFieldErrors('inStorage')}}
+                      </span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit"
+                            class="btn btn-primary float-end">
+                        Save
+                    </button>
+                </div>
+            </div>
+
+
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col">
+
+        <span>Valid</span>
+        <pre>{{ myForm.valid | json }}</pre>
+
+        <span>Pristine</span>
+        <pre>{{ myForm.pristine | json }}</pre>
+
+        <span>Touched</span>
+        <pre>{{ myForm.touched | json }}</pre>
+
+        <span>Value</span>
+        <pre>{{ myForm.value | json }}</pre>
+
+        <span>Price</span>
+        <pre>{{ myForm.controls['price'].value | json }}</pre>
+
+        <span>Price - Errors</span>
+        <pre>{{ myForm.controls['price'].errors | json }}</pre>
+
+        <span>Product</span>
+        <pre>{{ myForm.controls['name'].value | json }}</pre>
+
+        <span>Product - Errors</span>
+        <pre>{{ myForm.controls['name'].errors | json }}</pre>
+    </div>
+</div>
